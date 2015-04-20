@@ -1,5 +1,5 @@
 //
-//  GestureDatabaseView.h
+//  MMCollectionViewCell.h
 //  GestureDBv1
 //
 //  Created by Suhas Gudhe on 4/19/15.
@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MMSpreadsheetView.h>
-@interface GestureDatabaseView : MMSpreadsheetView
 
+@interface MMCollectionViewCell : UICollectionViewCell
+@property UILabel *label;
 @end

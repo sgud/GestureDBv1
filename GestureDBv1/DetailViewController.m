@@ -7,10 +7,17 @@
 //
 
 #import "DetailViewController.h"
+#import "MMGridLayout.h"
+#import "MMSpreadsheetView.h"
+#import "MMCollectionViewCell.h"
 
 @interface DetailViewController ()
+@property MMSpreadsheetView *spreadSheetView;
+
 
 @end
+
+
 
 @implementation DetailViewController
 
@@ -23,6 +30,24 @@
         // Update the view.
         [self configureView];
     }
+}
+
+- (void)addTableWithName:(NSString *)tableName {
+    // Create the spreadsheet in code.
+    MMSpreadsheetView *spreadSheetView = [[MMSpreadsheetView alloc] initWithNumberOfHeaderRows:1 numberOfHeaderColumns:1 frame:self.view.bounds];
+    
+    // Register your cell classes.
+    [spreadSheetView registerCellClass:[MMCollectionViewCell class] forCellWithReuseIdentifier:@"GridCell"];
+    [spreadSheetView registerCellClass:[MMCollectionViewCell class] forCellWithReuseIdentifier:@"TopRowCell"];
+    [spreadSheetView registerCellClass:[MMCollectionViewCell class] forCellWithReuseIdentifier:@"LeftColumnCell"];
+    
+    // Set the delegate & datasource spreadsheet view.
+    spreadSheetView.delegate = self;
+    spreadSheetView.dataSource = self;
+    
+    // Add the spreadsheet view as a subview.
+    [self.view addSubview:spreadSheetView];
+    self.spreadSheetView = spreadSheetView;
 }
 
 - (void)configureView {

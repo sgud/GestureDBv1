@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-MMSpreadsheetView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>EA09D690D0BFEF93BF6D2D60</key>
+		<key>A0573E5BA95045129F525313</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EEFC50757E21F14E7CEE03B6</key>
+		<key>AF5A91E7F8FCBF061EEA8A86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B66F318F3687D6A4949A0AFE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -12,6 +12,7 @@
 		AD10F08B1AE4882900692FF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AD10F08A1AE4882900692FF9 /* libsqlite3.0.dylib */; };
 		AD10F08E1AE489B200692FF9 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = AD10F08D1AE489B200692FF9 /* Model.m */; };
 		AD10F0911AE48F1A00692FF9 /* GestureDatabaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD10F0901AE48F1A00692FF9 /* GestureDatabaseView.m */; };
+		AD10F0941AE4A94B00692FF9 /* MMCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD10F0931AE4A94B00692FF9 /* MMCollectionViewCell.m */; };
 		AD56D8BC1AE45297001A9AA7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8BB1AE45297001A9AA7 /* main.m */; };
 		AD56D8BF1AE45297001A9AA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8BE1AE45297001A9AA7 /* AppDelegate.m */; };
 		AD56D8C21AE45297001A9AA7 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8C11AE45297001A9AA7 /* MasterViewController.m */; };
@@ -41,6 +42,8 @@
 		AD10F08D1AE489B200692FF9 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		AD10F08F1AE48F1A00692FF9 /* GestureDatabaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureDatabaseView.h; sourceTree = "<group>"; };
 		AD10F0901AE48F1A00692FF9 /* GestureDatabaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureDatabaseView.m; sourceTree = "<group>"; };
+		AD10F0921AE4A94B00692FF9 /* MMCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCollectionViewCell.h; sourceTree = "<group>"; };
+		AD10F0931AE4A94B00692FF9 /* MMCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCollectionViewCell.m; sourceTree = "<group>"; };
 		AD56D8B61AE45297001A9AA7 /* GestureDBv1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GestureDBv1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD56D8BA1AE45297001A9AA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD56D8BB1AE45297001A9AA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				AD56D8C11AE45297001A9AA7 /* MasterViewController.m */,
 				AD56D8C31AE45297001A9AA7 /* DetailViewController.h */,
 				AD56D8C41AE45297001A9AA7 /* DetailViewController.m */,
+				AD10F0921AE4A94B00692FF9 /* MMCollectionViewCell.h */,
+				AD10F0931AE4A94B00692FF9 /* MMCollectionViewCell.m */,
 				AD10F08F1AE48F1A00692FF9 /* GestureDatabaseView.h */,
 				AD10F0901AE48F1A00692FF9 /* GestureDatabaseView.m */,
 				AD56D8C61AE45297001A9AA7 /* Main.storyboard */,
@@ -305,6 +310,7 @@
 				AD10F0911AE48F1A00692FF9 /* GestureDatabaseView.m in Sources */,
 				AD56D8C21AE45297001A9AA7 /* MasterViewController.m in Sources */,
 				AD56D8BC1AE45297001A9AA7 /* main.m in Sources */,
+				AD10F0941AE4A94B00692FF9 /* MMCollectionViewCell.m in Sources */,
 				AD56D8C51AE45297001A9AA7 /* DetailViewController.m in Sources */,
 				AD10F08E1AE489B200692FF9 /* Model.m in Sources */,
 			);

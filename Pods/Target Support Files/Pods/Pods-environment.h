@@ -24,3 +24,9 @@
 #define COCOAPODS_VERSION_MINOR_FMDB_standard 5
 #define COCOAPODS_VERSION_PATCH_FMDB_standard 0
 
+// MMSpreadsheetView
+#define COCOAPODS_POD_AVAILABLE_MMSpreadsheetView
+#define COCOAPODS_VERSION_MAJOR_MMSpreadsheetView 0
+#define COCOAPODS_VERSION_MINOR_MMSpreadsheetView 0
+#define COCOAPODS_VERSION_PATCH_MMSpreadsheetView 3
+
