@@ -12,6 +12,15 @@
 
 @implementation Model
 
++ (int)getTableNum {
+    // Use a query to the SQL Master table where name = "table"
+    return 10;
+}
+
++ (NSString*)getTableNameForRow:(int)row {
+    return @"TableName1";
+}
+
 + (void)getAllData {
     // Getting the database path.
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -30,7 +39,7 @@
         NSString *strLoc = [NSString stringWithFormat:@"%@",[resultsWithNameLocation stringForColumn:@"Location"]];
         
         // loading your data into the array, dictionaries.
-        NSLog(@"ID = %d, Name = %@, Location = %@",strID, strName, strLoc);
+        NSLog(@"ID = %@, Name = %@, Location = %@",strID, strName, strLoc);
     }
     [database close];
 }
@@ -51,7 +60,7 @@
     [database close];
 }
 
-+ (void)updateDate {
++ (void)updateData {
     
     // Getting the database path.
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

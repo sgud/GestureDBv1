@@ -11,5 +11,10 @@
 #import "FMDatabaseAdditions.h"
 
 @interface Model : NSObject
-
++ (int)getTableNum;
++ (NSString*)getTableNameForRow:(int)row;
++ (void)getAllData;
++ (void)insertData;
++ (void)updateData;
++ (void)gettingRowCount;
 @end
