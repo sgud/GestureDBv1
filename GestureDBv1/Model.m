@@ -21,16 +21,30 @@
     return @"TableName1";
 }
 
-+ (void)getAllData {
++ (NSArray*)getColumnNames:(NSString*)tableName {
+    
+    return @[@"albumName", @"artist"];
+}
+
++ (int)getRowCount:(NSString*)tableName {
+    
+    return [[self getAllData:tableName] count];
+    
+}
+
++ (NSArray*)getAllData:(NSString *)tableName {
     // Getting the database path.
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
     NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
     
+    NSMutableArray *dataArray = [[NSMutableArray alloc] initWithArray:@[]];
+    
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
-    NSString *sqlSelectQuery = @"SELECT * FROM tablename";
     
+    NSString *sqlSelectQuery = @"SELECT * FROM tablename";
+
     // Query result
     FMResultSet *resultsWithNameLocation = [database executeQuery:sqlSelectQuery];
     while([resultsWithNameLocation next]) {
@@ -38,10 +52,14 @@
         NSString *strName = [NSString stringWithFormat:@"%@",[resultsWithNameLocation stringForColumn:@"Name"]];
         NSString *strLoc = [NSString stringWithFormat:@"%@",[resultsWithNameLocation stringForColumn:@"Location"]];
         
+       
+//        dataArray addObject:<#(id)#>;
+        
         // loading your data into the array, dictionaries.
         NSLog(@"ID = %@, Name = %@, Location = %@",strID, strName, strLoc);
     }
     [database close];
+    return @[];
 }
 
 #import "FMDatabase.h"
