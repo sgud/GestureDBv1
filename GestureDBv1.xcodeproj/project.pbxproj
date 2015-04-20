@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		53AA0611C3F4B9A5E92B7AAD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 797198CF93B4631CFFBBA1F6 /* libPods.a */; };
+		AD10F0891AE4879500692FF9 /* Chinook_Sqlite.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = AD10F0881AE4879500692FF9 /* Chinook_Sqlite.sqlite */; };
+		AD10F08B1AE4882900692FF9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AD10F08A1AE4882900692FF9 /* libsqlite3.0.dylib */; };
+		AD10F08E1AE489B200692FF9 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = AD10F08D1AE489B200692FF9 /* Model.m */; };
 		AD56D8BC1AE45297001A9AA7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8BB1AE45297001A9AA7 /* main.m */; };
 		AD56D8BF1AE45297001A9AA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8BE1AE45297001A9AA7 /* AppDelegate.m */; };
 		AD56D8C21AE45297001A9AA7 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8C11AE45297001A9AA7 /* MasterViewController.m */; };
@@ -31,6 +34,10 @@
 /* Begin PBXFileReference section */
 		33366118C6C24435A09CA55D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		797198CF93B4631CFFBBA1F6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD10F0881AE4879500692FF9 /* Chinook_Sqlite.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chinook_Sqlite.sqlite; sourceTree = "<group>"; };
+		AD10F08A1AE4882900692FF9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		AD10F08C1AE489B200692FF9 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		AD10F08D1AE489B200692FF9 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		AD56D8B61AE45297001A9AA7 /* GestureDBv1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GestureDBv1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD56D8BA1AE45297001A9AA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD56D8BB1AE45297001A9AA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD10F08B1AE4882900692FF9 /* libsqlite3.0.dylib in Frameworks */,
 				53AA0611C3F4B9A5E92B7AAD /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +79,7 @@
 		331D68E83AF1F60C99751C82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD10F08A1AE4882900692FF9 /* libsqlite3.0.dylib */,
 				797198CF93B4631CFFBBA1F6 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -101,6 +110,8 @@
 			children = (
 				AD56D8BD1AE45297001A9AA7 /* AppDelegate.h */,
 				AD56D8BE1AE45297001A9AA7 /* AppDelegate.m */,
+				AD10F08C1AE489B200692FF9 /* Model.h */,
+				AD10F08D1AE489B200692FF9 /* Model.m */,
 				AD56D8C01AE45297001A9AA7 /* MasterViewController.h */,
 				AD56D8C11AE45297001A9AA7 /* MasterViewController.m */,
 				AD56D8C31AE45297001A9AA7 /* DetailViewController.h */,
@@ -116,6 +127,7 @@
 		AD56D8B91AE45297001A9AA7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD10F0881AE4879500692FF9 /* Chinook_Sqlite.sqlite */,
 				AD56D8BA1AE45297001A9AA7 /* Info.plist */,
 				AD56D8BB1AE45297001A9AA7 /* main.m */,
 			);
@@ -231,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD56D8C81AE45297001A9AA7 /* Main.storyboard in Resources */,
+				AD10F0891AE4879500692FF9 /* Chinook_Sqlite.sqlite in Resources */,
 				AD56D8CD1AE45297001A9AA7 /* LaunchScreen.xib in Resources */,
 				AD56D8CA1AE45297001A9AA7 /* Images.xcassets in Resources */,
 			);
@@ -287,6 +300,7 @@
 				AD56D8C21AE45297001A9AA7 /* MasterViewController.m in Sources */,
 				AD56D8BC1AE45297001A9AA7 /* main.m in Sources */,
 				AD56D8C51AE45297001A9AA7 /* DetailViewController.m in Sources */,
+				AD10F08E1AE489B200692FF9 /* Model.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

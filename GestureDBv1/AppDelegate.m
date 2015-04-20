@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 gudhe. All rights reserved.
 //
 
+#define kSQLiteName @"Chinook_Sqlite.sqlite"
+
+
 #import "AppDelegate.h"
 #import "DetailViewController.h"
 
@@ -18,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self createCopyOfDatabaseIfNeeded];
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
@@ -56,6 +60,29 @@
     } else {
         return NO;
     }
+}
+
+#pragma mark - Defined Functions
+
+// Function to Create a writable copy of the bundled default database in the application Documents directory.
+- (void)createCopyOfDatabaseIfNeeded {
+    // First, test for existence.
+    BOOL success;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // Database filename can have extension db/sqlite.
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *appDBPath = [documentsDirectory stringByAppendingPathComponent:kSQLiteName];
+    
+    success = [fileManager fileExistsAtPath:appDBPath];
+    if (success) {
+        return;
+    }
+    // The writable database does not exist, so copy the default to the appropriate location.
+    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
+    success = [fileManager copyItemAtPath:defaultDBPath toPath:appDBPath error:&error];
+    NSAssert(success, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
 }
 
 @end
