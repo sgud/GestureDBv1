@@ -21,15 +21,19 @@
     return @"TableName1";
 }
 
-+ (NSArray*)getColumnNames:(NSString*)tableName {
++ (NSArray*)getColumnNamesWithTableName:(NSString*)tableName {
     
     return @[@"albumName", @"artist"];
 }
 
-+ (int)getRowCount:(NSString*)tableName {
++ (int)getRowCountWithTableName:(NSString*)tableName {
     
     return [[self getAllData:tableName] count];
     
+}
+
++ (NSString*)getValueForColumn:(int)column Row:(int)row {
+    return @"Hello World";
 }
 
 + (NSArray*)getAllData:(NSString *)tableName {

@@ -8,12 +8,14 @@
 
 #import "GestureDatabaseView.h"
 #import "Model.h"
+#import "MMGridLayout.h"
+#import "MMSpreadsheetView.h"
+#import "MMCollectionViewCell.h"
+#import "NSIndexPath+MMSpreadsheetView.h"
 
-@interface GestureDatabaseView () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@interface GestureDatabaseView () <MMSpreadsheetViewDataSource , MMSpreadsheetViewDelegate>
 @property NSString *tableName;
-@property UILabel *label;
-@property UITableView *table;
-@property UICollectionView *collection;
+@property MMSpreadsheetView *spreadSheetView;
 @end
 
 
@@ -22,49 +24,77 @@
 - (instancetype)initWithFrame:(CGRect)frame TableName:(NSString*)tableName {
     if (self=[super initWithFrame:frame]) {
         self.tableName = tableName;
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
-        [self addSubview:self.label];
-        self.table =  [[UITableView alloc] initWithFrame:CGRectMake(0, 50, 200, 200) style:UITableViewStylePlain];
-        self.table.delegate=self;
-        self.table.dataSource=self;
-        [self addSubview:self.table];
-        UICollectionViewFlowLayout *flow = [UICollectionViewFlowLayout new];
-        flow.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        self.collection = [[UICollectionView alloc] initWithFrame:CGRectMake(200, 50, 200, 200) collectionViewLayout:flow];
-        self.collection.delegate = self;
-        self.collection.dataSource = self;
-        [self addSubview:self.collection];
+        // Create the spreadsheet in code.
+        self.spreadSheetView = [[MMSpreadsheetView alloc] initWithNumberOfHeaderRows:1 numberOfHeaderColumns:1 frame:self.bounds];
+        
+        // Register your cell classes.
+        [self.spreadSheetView registerCellClass:[MMCollectionViewCell class] forCellWithReuseIdentifier:@"GridCell"];
+        [self.spreadSheetView registerCellClass:[MMCollectionViewCell class] forCellWithReuseIdentifier:@"TopRowCell"];
+        [self.spreadSheetView registerCellClass:[MMCollectionViewCell class] forCellWithReuseIdentifier:@"LeftColumnCell"];
+        
+        // Set the delegate & datasource spreadsheet view.
+        self.spreadSheetView.delegate = self;
+        self.spreadSheetView.dataSource = self;
+        
+        // Add the spreadsheet view as a subview.
+        [self addSubview:self.spreadSheetView];
+        
     }
     return self;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (NSInteger)numberOfColumnsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
+    return [[Model getColumnNamesWithTableName:self.tableName] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[Model getColumnNames:self.tableName] count];
+- (NSInteger)numberOfRowsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
+    return [Model getRowCountWithTableName:self.tableName];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableCell"];
-    // Checks if cell is nil, if nil creates cell
-    if (!cell) {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TableCell"];
+- (UICollectionViewCell *)spreadsheetView:(MMSpreadsheetView *)spreadsheetView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = nil;
+    if (indexPath.mmSpreadsheetRow == 0 && indexPath.mmSpreadsheetColumn == 0) {
+        // Upper left.
+        cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
+        MMCollectionViewCell *gc = (MMCollectionViewCell *)cell;
+        gc.label.text = self.tableName;
+//        cell.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
-    
-    NSArray *columnNames = [Model getColumnNames:self.tableName];
-    cell.textLabel.text = columnNames[indexPath.row];
+    else if (indexPath.mmSpreadsheetRow == 0 && indexPath.mmSpreadsheetColumn > 0) {
+        // Upper right.
+        cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"TopRowCell" forIndexPath:indexPath];
+        MMCollectionViewCell *tr = (MMCollectionViewCell *)cell;
+        tr.label.text = @"";
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+    else if (indexPath.mmSpreadsheetRow > 0 && indexPath.mmSpreadsheetColumn == 0) {
+        // Lower left.
+        cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"LeftColumnCell" forIndexPath:indexPath];
+        MMCollectionViewCell *lc = (MMCollectionViewCell *)cell;
+        lc.label.text = [Model getColumnNamesWithTableName:self.tableName][indexPath.mmSpreadsheetRow];
+        BOOL isDarker = indexPath.mmSpreadsheetRow % 2 == 0;
+        if (isDarker) {
+            cell.backgroundColor = [UIColor colorWithRed:222.0f / 255.0f green:243.0f / 255.0f blue:250.0f / 255.0f alpha:1.0f];
+        } else {
+            cell.backgroundColor = [UIColor colorWithRed:233.0f / 255.0f green:247.0f / 255.0f blue:252.0f / 255.0f alpha:1.0f];
+        }
+    }
+    else {
+        // Lower right.
+        cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
+        MMCollectionViewCell *gc = (MMCollectionViewCell *)cell;
+
+        gc.label.text = [Model getValueForColumn:indexPath.mmSpreadsheetColumn Row:indexPath.mmSpreadsheetRow];
+        BOOL isDarker = indexPath.mmSpreadsheetRow % 2 == 0;
+        if (isDarker) {
+            cell.backgroundColor = [UIColor colorWithRed:242.0f / 255.0f green:242.0f / 255.0f blue:242.0f / 255.0f alpha:1.0f];
+        } else {
+            cell.backgroundColor = [UIColor colorWithRed:250.0f / 255.0f green:250.0f / 255.0f blue:250.0f / 255.0f alpha:1.0f];
+        }
+    }
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [Model getRowCount:self.tableName];
-}
 
 @end
 

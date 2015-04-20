@@ -13,8 +13,9 @@
 @interface Model : NSObject
 + (int)getTableNum;
 + (NSString*)getTableNameForRow:(int)row;
-+ (NSArray*)getColumnNames:(NSString*)tableName;
-+ (int)getRowCount:(NSString*)tableName;
++ (NSArray*)getColumnNamesWithTableName:(NSString*)tableName;
++ (int)getRowCountWithTableName:(NSString*)tableName;
++ (NSString*)getValueForColumn:(int)column Row:(int)row;
 + (void)getAllData;
 + (void)insertData;
 + (void)updateData;

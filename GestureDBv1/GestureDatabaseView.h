@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MMSpreadsheetView.h>
-@interface GestureDatabaseView : MMSpreadsheetView
+
+@interface GestureDatabaseView : UIView
 
 @end
