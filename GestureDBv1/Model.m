@@ -23,13 +23,14 @@
 
 + (NSArray*)getColumnNamesWithTableName:(NSString*)tableName {
     
-    return @[@"albumName", @"artist"];
+    return @[@"albumName", @"artist", @"artist2", @"artist3", @"artist4", @"artist5", @"artist6", @"artist7", @"artist8", @"artist9"];
 }
 
 + (int)getRowCountWithTableName:(NSString*)tableName {
     
-    return [[self getAllData:tableName] count];
+//    return [[self getAllData:tableName] count];
     
+    return 10;
 }
 
 + (NSString*)getValueForColumn:(int)column Row:(int)row {
