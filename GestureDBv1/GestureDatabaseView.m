@@ -51,6 +51,30 @@
     return [Model getRowCountWithTableName:self.tableName];
 }
 
+- (CGSize)spreadsheetView:(MMSpreadsheetView *)spreadsheetView sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat leftColumnWidth = 320.0f;
+    CGFloat topRowHeight = 150.0f;
+    CGFloat gridCellWidth = 124.0f;
+    CGFloat gridCellHeight = 103.0f;
+    
+    // Upper left.
+    if (indexPath.mmSpreadsheetRow == 0 && indexPath.mmSpreadsheetColumn == 0) {
+        return CGSizeMake(leftColumnWidth, topRowHeight);
+    }
+    
+    // Upper right.
+    if (indexPath.mmSpreadsheetRow == 0 && indexPath.mmSpreadsheetColumn > 0) {
+        return CGSizeMake(gridCellWidth, topRowHeight);
+    }
+    
+    // Lower left.
+    if (indexPath.mmSpreadsheetRow > 0 && indexPath.mmSpreadsheetColumn == 0) {
+        return CGSizeMake(leftColumnWidth, gridCellHeight);
+    }
+    
+    return CGSizeMake(gridCellWidth, gridCellHeight);
+}
+
 - (UICollectionViewCell *)spreadsheetView:(MMSpreadsheetView *)spreadsheetView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = nil;
     if (indexPath.mmSpreadsheetRow == 0 && indexPath.mmSpreadsheetColumn == 0) {

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GestureDatabaseView : UIView
-
+- (instancetype)initWithFrame:(CGRect)frame TableName:(NSString*)tableName;
 @end

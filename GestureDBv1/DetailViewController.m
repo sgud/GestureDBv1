@@ -7,12 +7,10 @@
 //
 
 #import "DetailViewController.h"
-
+#import "GestureDatabaseView.h"
 
 @interface DetailViewController ()
-
-
-
+@property GestureDatabaseView *gestureDatabaseView;
 @end
 
 
@@ -36,9 +34,10 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
+    self.gestureDatabaseView = [[GestureDatabaseView alloc] initWithFrame:self.view.bounds TableName:self.tableName];
+    [self.view addSubview:self.gestureDatabaseView];
+    
+    
 }
 
 - (void)viewDidLoad {
