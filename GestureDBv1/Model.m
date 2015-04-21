@@ -17,12 +17,18 @@
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
     NSString *sqlSelectQuery = @"SELECT COUNT(*) FROM sqlite_master WHERE type='table'";
-//    FMResultSet *results = [database executeQuery:sqlSelectQuery];
-//    NSLog(@"RESULTS: %@",[results resultDictionary]);
-    int tableNum = [database executeQuery:sqlSelectQuery];
+//    NSString *sqlSelectQuery = @"SELECT name FROM sqlite_master WHERE type='table'";
+
+    FMResultSet *results = [database executeQuery:sqlSelectQuery];
+    [results next];
+    int tableNum = [[results stringForColumn:@"COUNT(*)"] integerValue];
+    NSLog(@"RESULTS: %@",[results resultDictionary]);
+//    int tableNum = [database executeQuery:sqlSelectQuery];
+//    NSLog(@"Results: %@", tableNum);
 //    while([results next]) {
 //        
 //    }
+    NSLog(@"TableNum: %@", [NSString stringWithFormat:@"%d",tableNum]);
     // Use a query to the SQL Master table where name = "table"
     return 10;
 }
