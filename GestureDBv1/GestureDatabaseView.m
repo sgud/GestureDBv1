@@ -96,7 +96,7 @@
         // Upper right.
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"TopRowCell" forIndexPath:indexPath];
         MMCollectionViewCell *tr = (MMCollectionViewCell *)cell;
-        tr.label.text = @"";
+        tr.label.text = @""; //-1
         cell.backgroundColor = [UIColor whiteColor];
     }
     else if (indexPath.mmSpreadsheetRow > 0 && indexPath.mmSpreadsheetColumn == 0) {
@@ -118,7 +118,7 @@
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
         MMCollectionViewCell *gc = (MMCollectionViewCell *)cell;
 
-        gc.label.text = [Model getValueForColumn:indexPath.mmSpreadsheetColumn Row:indexPath.mmSpreadsheetRow];
+        gc.label.text = [Model getValueForTableName:self.tableName Column:indexPath.mmSpreadsheetColumn - 1 Row:indexPath.mmSpreadsheetRow - 1];
         BOOL isDarker = indexPath.mmSpreadsheetRow % 2 == 0;
         if (isDarker) {
             cell.backgroundColor = [UIColor colorWithRed:242.0f / 255.0f green:242.0f / 255.0f blue:242.0f / 255.0f alpha:1.0f];

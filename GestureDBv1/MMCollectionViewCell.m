@@ -15,7 +15,7 @@
         [self.contentView addSubview:self.label];
         self.label.textAlignment = NSTextAlignmentCenter;
         self.label.adjustsFontSizeToFitWidth = true;
-        
+        self.label.numberOfLines = 0;
         
         
     }

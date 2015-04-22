@@ -63,7 +63,7 @@
     
     [database close];
 //    NSLog(@"TableName: %@", tableName);
-    NSLog(@"%@", columnNames);
+//    NSLog(@"%@", columnNames);
     return [NSArray arrayWithArray:columnNames];
 }
 
@@ -86,8 +86,11 @@
 //    return 3;
 }
 
-+ (NSString*)getValueForColumn:(int)column Row:(int)row {
-    return @"Hello World";
++ (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row {
+//    NSArray *temp = [self getAllData:@"Album"];
+
+//    return @"Hello World";
+    return [self getAllData:tableName][column][row];
 }
 
 + (NSArray*)getAllData:(NSString *)tableName {
@@ -103,25 +106,31 @@
     [database open];
     NSString *sqlSelect = @"SELECT * FROM ";
     NSString *sqlSelectQuery = [sqlSelect stringByAppendingString:tableName];
-    NSMutableArray *dataArray = [[NSMutableArray alloc] initWithArray:@[]];
+    int outerLength = [self getRowCountWithTableName:tableName];
+    NSMutableArray *outerArray = [[NSMutableArray alloc] initWithCapacity:outerLength];
+    int innerLength = [[self getColumnNamesWithTableName:tableName] count];
+    for (int i = 0; i < outerLength; i++) {
+        NSMutableArray *innerArray = [[NSMutableArray alloc] initWithCapacity:innerLength];
+        outerArray[i] = innerArray;
+    }
+    
+
     // Query result
     FMResultSet *results = [database executeQuery:sqlSelectQuery];
-    while([results next]) {
+    for (int i = 0; i < outerLength ; i++) {
         
+        [results next];
+        for (int j = 0; j < innerLength; j++) {
+            outerArray[i][j] = [[NSString alloc] initWithData:[results dataForColumnIndex:j] encoding:NSUTF8StringEncoding];
+            
+        }
         
-        
-//        NSString *strID = [NSString stringWithFormat:@"%d",[resultsWithNameLocation intForColumn:@"ID"]];
-//        NSString *strName = [NSString stringWithFormat:@"%@",[resultsWithNameLocation stringForColumn:@"Name"]];
-//        NSString *strLoc = [NSString stringWithFormat:@"%@",[resultsWithNameLocation stringForColumn:@"Location"]];
-        
-       
-//        dataArray addObject:<#(id)#>;
-        
-        // loading your data into the array, dictionaries.
-//        NSLog(@"ID = %@, Name = %@, Location = %@",strID, strName, strLoc);
     }
+    [results next];
+    
+    NSLog(@"OuterArray: %@", outerArray);
     [database close];
-    return @[];
+    return outerArray;
 }
 
 
