@@ -16,7 +16,7 @@
 + (NSArray*)getColumnNamesWithTableName:(NSString*)tableName;
 + (int)getRowCountWithTableName:(NSString*)tableName;
 + (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row Order:(NSString *)order ColumnName:(NSString *)columnName;
-+ (void)getAllData;
++ (NSArray*)getAllData:(NSString *)tableName;
 + (NSArray*)getAllDataAscWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName;
 + (NSArray*)getAllDataDescWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName;
 //+ (void)insertData;

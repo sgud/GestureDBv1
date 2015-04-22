@@ -22,6 +22,8 @@
         self.leftSwipe.delegate = self;
         [self.contentView addGestureRecognizer:self.leftSwipe];
         
+        
+        
     }
     return self;
 }
@@ -29,5 +31,7 @@
 - (void)leftSwipe:(UISwipeGestureRecognizer *)sender {
     [self.gdv updateTableWithColumnName:self.label.text Order:@"ASC"];
 }
+
+
 
 @end
