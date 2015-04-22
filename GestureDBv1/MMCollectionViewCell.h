@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GestureDatabaseView.h"
 
 @interface MMCollectionViewCell : UICollectionViewCell <UIGestureRecognizerDelegate>
 @property UILabel *label;
 @property UISwipeGestureRecognizer *leftSwipe;
 @property UISwipeGestureRecognizer *rightSwipe;
+@property (weak) GestureDatabaseView *gdv;
 @end

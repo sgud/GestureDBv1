@@ -10,4 +10,7 @@
 
 @interface GestureDatabaseView : UIView
 - (instancetype)initWithFrame:(CGRect)frame TableName:(NSString*)tableName;
+@property NSString *order;
+@property NSString *columnName;
+- (void)updateTableWithColumnName:(NSString *)columnName Order:(NSString *)order;
 @end

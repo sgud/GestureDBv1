@@ -86,11 +86,18 @@
 //    return 3;
 }
 
-+ (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row {
++ (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row Order:(NSString *)order ColumnName:(NSString *)columnName {
 //    NSArray *temp = [self getAllData:@"Album"];
-
+    NSString *cellValue;
+    if (!order) {
+        cellValue = [self getAllData:tableName][column][row];
+    } else if ([order isEqualToString:@"ASC"]) {
+        cellValue = [self getAllDataAscWithTableName:tableName ColumnName:columnName][column][row];
+    } else if ([order isEqualToString:@"DESC"]) {
+        cellValue = [self getAllDataDescWithTableName:tableName ColumnName:columnName][column][row];
+    }
 //    return @"Hello World";
-    return [self getAllData:tableName][column][row];
+    return cellValue;
 }
 
 + (NSArray*)getAllData:(NSString *)tableName {
@@ -128,7 +135,7 @@
     return outerArray;
 }
 
-+ (NSArray*)getAllDataAsc:(NSString *)tableName ColumnName:(NSString *)columnName {
++ (NSArray*)getAllDataAscWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName {
     // Getting the database path.
     NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
     
@@ -163,7 +170,7 @@
     return outerArray;
 }
 
-+ (NSArray*)getAllDataDesc:(NSString *)tableName ColumnName:(NSString *)columnName {
++ (NSArray*)getAllDataDescWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName {
     // Getting the database path.
     NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
     

@@ -15,10 +15,10 @@
 + (NSString*)getTableNameForRow:(int)row;
 + (NSArray*)getColumnNamesWithTableName:(NSString*)tableName;
 + (int)getRowCountWithTableName:(NSString*)tableName;
-+ (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row;
++ (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row Order:(NSString *)order ColumnName:(NSString *)columnName;
 + (void)getAllData;
-+ (NSArray*)getAllDataAsc:(NSString *)tableName ColumnName:(NSString *)columnName;
-+ (NSArray*)getAllDataDesc:(NSString *)tableName ColumnName:(NSString *)columnName;
++ (NSArray*)getAllDataAscWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName;
++ (NSArray*)getAllDataDescWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName;
 //+ (void)insertData;
 //+ (void)updateData;
 //+ (void)gettingRowCount;

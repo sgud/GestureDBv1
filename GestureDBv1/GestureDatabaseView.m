@@ -90,6 +90,7 @@
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
         MMCollectionViewCell *gc = (MMCollectionViewCell *)cell;
         gc.label.text = self.tableName;
+        
 //        cell.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
     else if (indexPath.mmSpreadsheetRow == 0 && indexPath.mmSpreadsheetColumn > 0) {
@@ -97,15 +98,17 @@
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"TopRowCell" forIndexPath:indexPath];
         MMCollectionViewCell *tr = (MMCollectionViewCell *)cell;
         tr.label.text = @""; //-1
+        
         cell.backgroundColor = [UIColor whiteColor];
     }
     else if (indexPath.mmSpreadsheetRow > 0 && indexPath.mmSpreadsheetColumn == 0) {
         // Lower left.
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"LeftColumnCell" forIndexPath:indexPath];
         MMCollectionViewCell *lc = (MMCollectionViewCell *)cell;
-        NSLog(@"Index path is: %i \nColumn names: %@", indexPath.mmSpreadsheetRow - 1,[Model getColumnNamesWithTableName:self.tableName]);
-        
+//        NSLog(@"Index path is: %i \nColumn names: %@", indexPath.mmSpreadsheetRow - 1,[Model getColumnNamesWithTableName:self.tableName]);
+        lc.gdv = self;
         lc.label.text = [Model getColumnNamesWithTableName:self.tableName][indexPath.mmSpreadsheetRow - 1];
+        
         BOOL isDarker = indexPath.mmSpreadsheetRow % 2 == 0;
         if (isDarker) {
             cell.backgroundColor = [UIColor colorWithRed:222.0f / 255.0f green:243.0f / 255.0f blue:250.0f / 255.0f alpha:1.0f];
@@ -118,7 +121,10 @@
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
         MMCollectionViewCell *gc = (MMCollectionViewCell *)cell;
 
-        gc.label.text = [Model getValueForTableName:self.tableName Column:indexPath.mmSpreadsheetColumn - 1 Row:indexPath.mmSpreadsheetRow - 1];
+//        gc.label.text = [Model getValueForTableName:self.tableName Column:indexPath.mmSpreadsheetColumn - 1 Row:indexPath.mmSpreadsheetRow - 1];
+        gc.label.text = [Model getValueForTableName:self.tableName Column:indexPath.mmSpreadsheetColumn - 1 Row:indexPath.mmSpreadsheetRow - 1 Order:self.order
+                                         ColumnName:self.columnName];
+        
         BOOL isDarker = indexPath.mmSpreadsheetRow % 2 == 0;
         if (isDarker) {
             cell.backgroundColor = [UIColor colorWithRed:242.0f / 255.0f green:242.0f / 255.0f blue:242.0f / 255.0f alpha:1.0f];
@@ -127,6 +133,14 @@
         }
     }
     return cell;
+}
+
+- (void)updateTableWithColumnName:(NSString *)columnName Order:(NSString *)order {
+    self.columnName = columnName;
+    self.order = order;
+    [self.spreadSheetView reloadData];
+    self.columnName = nil;
+    self.order = nil;
 }
 
 

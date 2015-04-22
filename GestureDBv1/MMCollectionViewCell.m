@@ -8,6 +8,7 @@
 
 #import "MMCollectionViewCell.h"
 
+
 @implementation MMCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -26,7 +27,7 @@
 }
 
 - (void)leftSwipe:(UISwipeGestureRecognizer *)sender {
-    
+    [self.gdv updateTableWithColumnName:self.label.text Order:@"ASC"];
 }
 
 @end
