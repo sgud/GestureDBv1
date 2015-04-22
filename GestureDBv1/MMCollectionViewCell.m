@@ -17,11 +17,16 @@
         self.label.adjustsFontSizeToFitWidth = true;
         self.label.numberOfLines = 0;
         
+        self.leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe:)];
+        self.leftSwipe.delegate = self;
+        [self.contentView addGestureRecognizer:self.leftSwipe];
         
     }
     return self;
 }
 
-
+- (void)leftSwipe:(UISwipeGestureRecognizer *)sender {
+    
+}
 
 @end

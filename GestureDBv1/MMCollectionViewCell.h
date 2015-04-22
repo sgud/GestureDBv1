@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMCollectionViewCell : UICollectionViewCell
+@interface MMCollectionViewCell : UICollectionViewCell <UIGestureRecognizerDelegate>
 @property UILabel *label;
+@property UISwipeGestureRecognizer *leftSwipe;
+@property UISwipeGestureRecognizer *rightSwipe;
 @end

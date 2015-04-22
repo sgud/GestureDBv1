@@ -95,12 +95,7 @@
 
 + (NSArray*)getAllData:(NSString *)tableName {
     // Getting the database path.
-//    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *docsPath = [paths objectAtIndex:0];
-//    NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
     NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
-    
-   
     
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
@@ -133,8 +128,75 @@
     return outerArray;
 }
 
++ (NSArray*)getAllDataAsc:(NSString *)tableName ColumnName:(NSString *)columnName {
+    // Getting the database path.
+    NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
+    
+    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+    [database open];
+    NSString *sqlSelect = @"SELECT * FROM ";
+    NSString *sqlSelectQuery = [[[[sqlSelect stringByAppendingString:tableName] stringByAppendingString:@" ORDER BY "] stringByAppendingString:columnName] stringByAppendingString:@" ASC"];
+    int outerLength = [self getRowCountWithTableName:tableName];
+    NSMutableArray *outerArray = [[NSMutableArray alloc] initWithCapacity:outerLength];
+    int innerLength = [[self getColumnNamesWithTableName:tableName] count];
+    for (int i = 0; i < outerLength; i++) {
+        NSMutableArray *innerArray = [[NSMutableArray alloc] initWithCapacity:innerLength];
+        outerArray[i] = innerArray;
+    }
+    
+    
+    // Query result
+    FMResultSet *results = [database executeQuery:sqlSelectQuery];
+    for (int i = 0; i < outerLength ; i++) {
+        
+        [results next];
+        for (int j = 0; j < innerLength; j++) {
+            outerArray[i][j] = [[NSString alloc] initWithData:[results dataForColumnIndex:j] encoding:NSUTF8StringEncoding];
+            
+        }
+        
+    }
+    [results next];
+    
+    NSLog(@"OuterArray: %@", outerArray);
+    [database close];
+    return outerArray;
+}
 
-
++ (NSArray*)getAllDataDesc:(NSString *)tableName ColumnName:(NSString *)columnName {
+    // Getting the database path.
+    NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
+    
+    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+    [database open];
+    NSString *sqlSelect = @"SELECT * FROM ";
+    NSString *sqlSelectQuery = [[[[sqlSelect stringByAppendingString:tableName] stringByAppendingString:@" ORDER BY "] stringByAppendingString:columnName] stringByAppendingString:@" DESC"];
+    int outerLength = [self getRowCountWithTableName:tableName];
+    NSMutableArray *outerArray = [[NSMutableArray alloc] initWithCapacity:outerLength];
+    int innerLength = [[self getColumnNamesWithTableName:tableName] count];
+    for (int i = 0; i < outerLength; i++) {
+        NSMutableArray *innerArray = [[NSMutableArray alloc] initWithCapacity:innerLength];
+        outerArray[i] = innerArray;
+    }
+    
+    
+    // Query result
+    FMResultSet *results = [database executeQuery:sqlSelectQuery];
+    for (int i = 0; i < outerLength ; i++) {
+        
+        [results next];
+        for (int j = 0; j < innerLength; j++) {
+            outerArray[i][j] = [[NSString alloc] initWithData:[results dataForColumnIndex:j] encoding:NSUTF8StringEncoding];
+            
+        }
+        
+    }
+    [results next];
+    
+    NSLog(@"OuterArray: %@", outerArray);
+    [database close];
+    return outerArray;
+}
 //+ (void)insertData {
 //    
 //    // Getting the database path.

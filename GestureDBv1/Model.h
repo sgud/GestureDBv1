@@ -17,8 +17,10 @@
 + (int)getRowCountWithTableName:(NSString*)tableName;
 + (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row;
 + (void)getAllData;
-+ (void)insertData;
-+ (void)updateData;
-+ (void)gettingRowCount;
++ (NSArray*)getAllDataAsc:(NSString *)tableName ColumnName:(NSString *)columnName;
++ (NSArray*)getAllDataDesc:(NSString *)tableName ColumnName:(NSString *)columnName;
+//+ (void)insertData;
+//+ (void)updateData;
+//+ (void)gettingRowCount;
 
 @end
