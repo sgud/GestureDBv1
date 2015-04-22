@@ -16,25 +16,34 @@
     NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
+
     NSString *sqlSelectQuery = @"SELECT COUNT(*) FROM sqlite_master WHERE type='table'";
 //    NSString *sqlSelectQuery = @"SELECT name FROM sqlite_master WHERE type='table'";
 
     FMResultSet *results = [database executeQuery:sqlSelectQuery];
     [results next];
     int tableNum = [[results stringForColumn:@"COUNT(*)"] integerValue];
-    NSLog(@"RESULTS: %@",[results resultDictionary]);
-//    int tableNum = [database executeQuery:sqlSelectQuery];
-//    NSLog(@"Results: %@", tableNum);
-//    while([results next]) {
-//        
-//    }
-    NSLog(@"TableNum: %@", [NSString stringWithFormat:@"%d",tableNum]);
-    // Use a query to the SQL Master table where name = "table"
-    return 10;
+    [database close];
+    return tableNum;
+
 }
 
 + (NSString*)getTableNameForRow:(int)row {
-    return @"Album";
+
+    NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
+    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+    [database open];
+//    NSString *sqlSelectQuery = @"SELECT COUNT(*) FROM sqlite_master WHERE type='table'";
+    NSString *sqlSelectQuery = @"SELECT name FROM sqlite_master WHERE type='table'";
+    NSMutableArray *tableNames = [[NSMutableArray alloc] initWithArray:@[]];
+    FMResultSet *results = [database executeQuery:sqlSelectQuery];
+    while([results next]) {
+        NSString *name = [results stringForColumn:@"name"];
+        [tableNames addObject:name];
+    }
+//    NSLog(@"%@", tableNames);
+    [database close];
+    return tableNames[row];
 }
 
 + (NSArray*)getColumnNamesWithTableName:(NSString*)tableName {
@@ -53,15 +62,27 @@
     }
     
     [database close];
-    NSLog(@"%@", columnNames);
+//    NSLog(@"%@", columnNames);
     return [NSArray arrayWithArray:columnNames];
 }
 
 + (int)getRowCountWithTableName:(NSString*)tableName {
     
-//    return [[self getAllData:tableName] count];
+//    int temp = [[self getAllData:tableName] count];
+    NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
+    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+    [database open];
+    NSString *sqlSelect = @"SELECT COUNT(*) FROM";
+    NSString *sqlSelectQuery = [sqlSelect stringByAppendingString:tableName];
+    //    NSString *sqlSelectQuery = @"SELECT name FROM sqlite_master WHERE type='table'";
     
-    return 10;
+//    FMResultSet *results = [database executeQuery:sqlSelectQuery];
+//    [results next];
+    NSUInteger count = [database intForQuery:sqlSelectQuery];
+    [database close];
+//    NSLog(@"%@", count);
+    return count;
+//    return 3;
 }
 
 + (NSString*)getValueForColumn:(int)column Row:(int)row {
@@ -102,47 +123,47 @@
     return @[];
 }
 
-#import "FMDatabase.h"
 
-+ (void)insertData {
-    
-    // Getting the database path.
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsPath = [paths objectAtIndex:0];
-    NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
-    
-    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
-    [database open];
-    NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO user VALUES ('%@', %d)", @"Jobin Kurian", 25];
-    [database executeUpdate:insertQuery];
-    [database close];
-}
 
-+ (void)updateData {
-    
-    // Getting the database path.
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsPath = [paths objectAtIndex:0];
-    NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
-    
-    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
-    [database open];
-    NSString *insertQuery = [NSString stringWithFormat:@"UPDATE users SET age = '%@' WHERE username = '%@'", @"23", @"colin" ];
-    [database executeUpdate:insertQuery];
-    [database close];
-}
-
-+ (void)gettingRowCount {
-    
-    // Getting the database path.
-    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsPath = [paths objectAtIndex:0];
-    NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
-    
-    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
-    [database open];
-    NSUInteger count = [database intForQuery:@"SELECT COUNT(field_name) FROM table_name"];
-    [database close];
-}
+//+ (void)insertData {
+//    
+//    // Getting the database path.
+//    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docsPath = [paths objectAtIndex:0];
+//    NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
+//    
+//    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+//    [database open];
+//    NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO user VALUES ('%@', %d)", @"Jobin Kurian", 25];
+//    [database executeUpdate:insertQuery];
+//    [database close];
+//}
+//
+//+ (void)updateData {
+//    
+//    // Getting the database path.
+//    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docsPath = [paths objectAtIndex:0];
+//    NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
+//    
+//    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+//    [database open];
+//    NSString *insertQuery = [NSString stringWithFormat:@"UPDATE users SET age = '%@' WHERE username = '%@'", @"23", @"colin" ];
+//    [database executeUpdate:insertQuery];
+//    [database close];
+//}
+//
+//+ (void)gettingRowCount {
+//    
+//    // Getting the database path.
+//    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docsPath = [paths objectAtIndex:0];
+//    NSString *dbPath = [docsPath stringByAppendingPathComponent:kSQLiteName];
+//    
+//    FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
+//    [database open];
+//    NSUInteger count = [database intForQuery:@"SELECT COUNT(field_name) FROM table_name"];
+//    [database close];
+//}
 
 @end

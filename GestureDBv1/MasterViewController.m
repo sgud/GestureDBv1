@@ -53,6 +53,8 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *tableName = [Model getTableNameForRow:indexPath.row];
+        NSLog(@"%@", tableName);
+        NSAssert(tableName != nil, @"Table name is null");
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         controller.tableName = tableName;
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;

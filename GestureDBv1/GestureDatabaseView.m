@@ -23,6 +23,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame TableName:(NSString*)tableName {
     if (self=[super initWithFrame:frame]) {
+        NSAssert(tableName != nil, @"Table name is null");
         self.tableName = tableName;
         // Create the spreadsheet in code.
         self.spreadSheetView = [[MMSpreadsheetView alloc] initWithNumberOfHeaderRows:1 numberOfHeaderColumns:1 frame:self.bounds];
@@ -44,11 +45,18 @@
 }
 
 - (NSInteger)numberOfColumnsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
-    return [[Model getColumnNamesWithTableName:self.tableName] count];
+    NSAssert(self.tableName != nil, @"Table name is null");
+    int temp = [[Model getColumnNamesWithTableName:self.tableName] count];
+    NSLog(@"Column: %i",temp);
+    return temp;
 }
 
 - (NSInteger)numberOfRowsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
-    return [Model getRowCountWithTableName:self.tableName];
+    NSAssert(self.tableName != nil, @"Table name is null");
+   
+    int temp = [Model getRowCountWithTableName:self.tableName];
+    NSLog(@"Row: %i",temp);
+    return temp;
 }
 
 - (CGSize)spreadsheetView:(MMSpreadsheetView *)spreadsheetView sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

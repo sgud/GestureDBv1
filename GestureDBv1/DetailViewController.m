@@ -34,8 +34,11 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-    self.gestureDatabaseView = [[GestureDatabaseView alloc] initWithFrame:self.view.bounds TableName:self.tableName];
-    [self.view addSubview:self.gestureDatabaseView];
+    if (self.tableName) {
+        self.gestureDatabaseView = [[GestureDatabaseView alloc] initWithFrame:self.view.bounds TableName:self.tableName];
+        [self.view addSubview:self.gestureDatabaseView];
+    }
+
     
     
 }
