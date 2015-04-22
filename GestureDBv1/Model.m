@@ -50,7 +50,7 @@
     NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
-    NSString *sqlPragmaQuery = [NSString stringWithFormat:@"PRAGMA table_info(%@)",@"Album"];
+    NSString *sqlPragmaQuery = [NSString stringWithFormat:@"PRAGMA table_info(%@)",tableName];
 //    NSString *sqlSelectQuery = [NSString stringWithFormat:@"SELECT sql FROM sqlite_master WHERE tbl_name = '%@' AND type = 'table'",@"Album"];
     
     NSMutableArray *columnNames = [[NSMutableArray alloc] initWithArray:@[]];
@@ -62,7 +62,8 @@
     }
     
     [database close];
-//    NSLog(@"%@", columnNames);
+//    NSLog(@"TableName: %@", tableName);
+    NSLog(@"%@", columnNames);
     return [NSArray arrayWithArray:columnNames];
 }
 
@@ -72,7 +73,7 @@
     NSString *dbPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kSQLiteName];
     FMDatabase *database = [FMDatabase databaseWithPath:dbPath];
     [database open];
-    NSString *sqlSelect = @"SELECT COUNT(*) FROM";
+    NSString *sqlSelect = @"SELECT COUNT(*) FROM ";
     NSString *sqlSelectQuery = [sqlSelect stringByAppendingString:tableName];
     //    NSString *sqlSelectQuery = @"SELECT name FROM sqlite_master WHERE type='table'";
     

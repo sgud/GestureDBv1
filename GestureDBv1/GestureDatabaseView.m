@@ -46,17 +46,17 @@
 
 - (NSInteger)numberOfColumnsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
     NSAssert(self.tableName != nil, @"Table name is null");
-    int temp = [[Model getColumnNamesWithTableName:self.tableName] count];
+    int temp = [Model getRowCountWithTableName:self.tableName];
     NSLog(@"Column: %i",temp);
-    return temp;
+    return temp + 1;
 }
 
 - (NSInteger)numberOfRowsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
     NSAssert(self.tableName != nil, @"Table name is null");
-   
-    int temp = [Model getRowCountWithTableName:self.tableName];
+   int temp = [[Model getColumnNamesWithTableName:self.tableName] count];
+    
     NSLog(@"Row: %i",temp);
-    return temp;
+    return temp + 1;
 }
 
 - (CGSize)spreadsheetView:(MMSpreadsheetView *)spreadsheetView sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,7 +103,9 @@
         // Lower left.
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"LeftColumnCell" forIndexPath:indexPath];
         MMCollectionViewCell *lc = (MMCollectionViewCell *)cell;
-        lc.label.text = [Model getColumnNamesWithTableName:self.tableName][indexPath.mmSpreadsheetRow];
+        NSLog(@"Index path is: %i \nColumn names: %@", indexPath.mmSpreadsheetRow - 1,[Model getColumnNamesWithTableName:self.tableName]);
+        
+        lc.label.text = [Model getColumnNamesWithTableName:self.tableName][indexPath.mmSpreadsheetRow - 1];
         BOOL isDarker = indexPath.mmSpreadsheetRow % 2 == 0;
         if (isDarker) {
             cell.backgroundColor = [UIColor colorWithRed:222.0f / 255.0f green:243.0f / 255.0f blue:250.0f / 255.0f alpha:1.0f];
