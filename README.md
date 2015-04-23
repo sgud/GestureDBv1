@@ -1,5 +1,5 @@
 # GestureDBv1
-Gesture iOS Project
+Gesture Interactive Database iOS Project
 #Description
 GestureDBv1 is an iOS application that connects to a sample chinook.sqlite  database (available at https://chinookdatabase.codeplex.com/). 
 The application enables the user to view the tables and the contents of tables in the database. 
