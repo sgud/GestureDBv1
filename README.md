@@ -1,7 +1,9 @@
 # GestureDBv1
 Gesture iOS Project
 #Description
-    GestureDBv1 is an iOS application that connects to a sample chinook.sqlite  database (available at https://chinookdatabase.codeplex.com/). The application enables the user to view the tables and the contents of tables in the database. Furthermore, the user is able to apply a sort to the table content view with left swipes on the attribute names for an ascending sort and a right swipe for a descending sort. 
+GestureDBv1 is an iOS application that connects to a sample chinook.sqlite  database (available at https://chinookdatabase.codeplex.com/). 
+The application enables the user to view the tables and the contents of tables in the database. 
+Furthermore, the user is able to apply a sort to the table content view with left swipes on the attribute names for an ascending sort and a right swipe for a descending sort. 
 
 #Execution Instructions
 	1) Copy the project into a directory of choice.
