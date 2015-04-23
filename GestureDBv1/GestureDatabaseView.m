@@ -139,8 +139,8 @@
     self.columnName = columnName;
     self.order = order;
     [self.spreadSheetView reloadData];
-    self.columnName = nil;
-    self.order = nil;
+//    self.columnName = nil;
+//    self.order = nil;
 }
 
 

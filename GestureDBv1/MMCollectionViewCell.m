@@ -20,18 +20,31 @@
         
         self.leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipe:)];
         self.leftSwipe.delegate = self;
+        self.leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+        
         [self.contentView addGestureRecognizer:self.leftSwipe];
         
         
+        
+        
+        self.rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipe:)];
+        self.rightSwipe.delegate = self;
+        self.rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+        [self.contentView addGestureRecognizer:self.rightSwipe];
         
     }
     return self;
 }
 
 - (void)leftSwipe:(UISwipeGestureRecognizer *)sender {
+    
     [self.gdv updateTableWithColumnName:self.label.text Order:@"ASC"];
 }
 
+- (void)rightSwipe:(UISwipeGestureRecognizer *)sender {
+    
+    [self.gdv updateTableWithColumnName:self.label.text Order:@"DESC"];
+}
 
 
 @end
