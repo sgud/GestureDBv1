@@ -2,7 +2,7 @@
 //  Model.h
 //  GestureDBv1
 //
-//  Created by Suhas Gudhe on 4/19/15.
+//  
 //  Copyright (c) 2015 gudhe. All rights reserved.
 //
 
@@ -16,11 +16,8 @@
 + (NSArray*)getColumnNamesWithTableName:(NSString*)tableName;
 + (int)getRowCountWithTableName:(NSString*)tableName;
 + (NSString*)getValueForTableName:(NSString *)tableName Column:(int)column Row:(int)row Order:(NSString *)order ColumnName:(NSString *)columnName;
-+ (NSArray*)getAllData:(NSString *)tableName;
++ (NSArray*)getAllRecords:(NSString *)tableName;
 + (NSArray*)getAllDataAscWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName;
 + (NSArray*)getAllDataDescWithTableName:(NSString *)tableName ColumnName:(NSString *)columnName;
-//+ (void)insertData;
-//+ (void)updateData;
-//+ (void)gettingRowCount;
 
 @end

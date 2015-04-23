@@ -18,9 +18,9 @@
 		AD56D8C21AE45297001A9AA7 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8C11AE45297001A9AA7 /* MasterViewController.m */; };
 		AD56D8C51AE45297001A9AA7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8C41AE45297001A9AA7 /* DetailViewController.m */; };
 		AD56D8C81AE45297001A9AA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD56D8C61AE45297001A9AA7 /* Main.storyboard */; };
-		AD56D8CA1AE45297001A9AA7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD56D8C91AE45297001A9AA7 /* Images.xcassets */; };
 		AD56D8CD1AE45297001A9AA7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD56D8CB1AE45297001A9AA7 /* LaunchScreen.xib */; };
 		AD56D8D91AE45297001A9AA7 /* GestureDBv1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD56D8D81AE45297001A9AA7 /* GestureDBv1Tests.m */; };
+		ADEEA67D1AE91C8200BB9F59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADEEA67C1AE91C8200BB9F59 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,11 +54,11 @@
 		AD56D8C31AE45297001A9AA7 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		AD56D8C41AE45297001A9AA7 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		AD56D8C71AE45297001A9AA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AD56D8C91AE45297001A9AA7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AD56D8CC1AE45297001A9AA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AD56D8D21AE45297001A9AA7 /* GestureDBv1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GestureDBv1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD56D8D71AE45297001A9AA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD56D8D81AE45297001A9AA7 /* GestureDBv1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GestureDBv1Tests.m; sourceTree = "<group>"; };
+		ADEEA67C1AE91C8200BB9F59 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D117072102AB099C17D33BB8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +127,7 @@
 				AD10F08F1AE48F1A00692FF9 /* GestureDatabaseView.h */,
 				AD10F0901AE48F1A00692FF9 /* GestureDatabaseView.m */,
 				AD56D8C61AE45297001A9AA7 /* Main.storyboard */,
-				AD56D8C91AE45297001A9AA7 /* Images.xcassets */,
+				ADEEA67C1AE91C8200BB9F59 /* Images.xcassets */,
 				AD56D8CB1AE45297001A9AA7 /* LaunchScreen.xib */,
 				AD56D8B91AE45297001A9AA7 /* Supporting Files */,
 			);
@@ -253,9 +253,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD56D8C81AE45297001A9AA7 /* Main.storyboard in Resources */,
+				ADEEA67D1AE91C8200BB9F59 /* Images.xcassets in Resources */,
 				AD10F0891AE4879500692FF9 /* Chinook_Sqlite.sqlite in Resources */,
 				AD56D8CD1AE45297001A9AA7 /* LaunchScreen.xib in Resources */,
-				AD56D8CA1AE45297001A9AA7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

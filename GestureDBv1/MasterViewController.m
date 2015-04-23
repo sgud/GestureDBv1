@@ -2,7 +2,7 @@
 //  MasterViewController.m
 //  GestureDBv1
 //
-//  Created by Suhas Gudhe on 4/19/15.
+//  
 //  Copyright (c) 2015 gudhe. All rights reserved.
 //
 
@@ -26,10 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-//
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -53,7 +49,6 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *tableName = [Model getTableNameForRow:indexPath.row];
-        NSLog(@"%@", tableName);
         NSAssert(tableName != nil, @"Table name is null");
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         controller.tableName = tableName;

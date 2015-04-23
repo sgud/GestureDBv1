@@ -2,7 +2,7 @@
 //  GestureDatabaseView.m
 //  GestureDBv1
 //
-//  Created by Suhas Gudhe on 4/19/15.
+//
 //  Copyright (c) 2015 gudhe. All rights reserved.
 //
 
@@ -47,15 +47,14 @@
 - (NSInteger)numberOfColumnsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
     NSAssert(self.tableName != nil, @"Table name is null");
     int temp = [Model getRowCountWithTableName:self.tableName];
-    NSLog(@"Column: %i",temp);
+    // Corrects an off by one error in printing the number of columns (due to range indices starting at 0)
     return temp + 1;
 }
 
 - (NSInteger)numberOfRowsInSpreadsheetView:(MMSpreadsheetView *)spreadsheetView {
     NSAssert(self.tableName != nil, @"Table name is null");
    int temp = [[Model getColumnNamesWithTableName:self.tableName] count];
-    
-    NSLog(@"Row: %i",temp);
+    // Corrects an off by one error in printing the number of rows (due to range indices starting at 0)
     return temp + 1;
 }
 
@@ -90,8 +89,6 @@
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
         MMCollectionViewCell *gc = (MMCollectionViewCell *)cell;
         gc.label.text = self.tableName;
-        
-//        cell.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
     else if (indexPath.mmSpreadsheetRow == 0 && indexPath.mmSpreadsheetColumn > 0) {
         // Upper right.
@@ -105,7 +102,7 @@
         // Lower left.
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"LeftColumnCell" forIndexPath:indexPath];
         MMCollectionViewCell *lc = (MMCollectionViewCell *)cell;
-//        NSLog(@"Index path is: %i \nColumn names: %@", indexPath.mmSpreadsheetRow - 1,[Model getColumnNamesWithTableName:self.tableName]);
+        
         lc.gdv = self;
         lc.label.text = [Model getColumnNamesWithTableName:self.tableName][indexPath.mmSpreadsheetRow - 1];
         
@@ -121,7 +118,6 @@
         cell = [spreadsheetView dequeueReusableCellWithReuseIdentifier:@"GridCell" forIndexPath:indexPath];
         MMCollectionViewCell *gc = (MMCollectionViewCell *)cell;
 
-//        gc.label.text = [Model getValueForTableName:self.tableName Column:indexPath.mmSpreadsheetColumn - 1 Row:indexPath.mmSpreadsheetRow - 1];
         gc.label.text = [Model getValueForTableName:self.tableName Column:indexPath.mmSpreadsheetColumn - 1 Row:indexPath.mmSpreadsheetRow - 1 Order:self.order
                                          ColumnName:self.columnName];
         
@@ -139,8 +135,6 @@
     self.columnName = columnName;
     self.order = order;
     [self.spreadSheetView reloadData];
-//    self.columnName = nil;
-//    self.order = nil;
 }
 
 
